@@ -12,31 +12,17 @@ var word_list = process.argv[3];
 fs.readFile(doc_file, "UTF-8", function(err, data) {
     if(err) {
         throw err;
-    }
+    };
     
-    var lines = data.split("\n");
-    var words = [];
-    for(var i = 0; i < lines.length; i++) {
-        words = words.concat(lines[i].split(" "));
-    }
-    
-    words.sort();
+    var words = data.split(/\W/).sort();
 
     // Source: http://stackoverflow.com/a/23238595/2079814
+    // Removes duplicates and strip out empty elements.
     words = words.filter(function(item, index) {
-        return words.indexOf(item) == index;
+        return (item && item.length > 0) && words.indexOf(item) === index;
     })
     
-    words = words.filter(Boolean); // Strip out empty elements.
-    
-    var output_holder = "";
-    
-    for(var i = 0; i < words.length; i++) {
-        output_holder += words[i] + "\n";
-    }
-    output_holder = output_holder.substr(0, output_holder.length - 1); // Strip away the last newline.
-    
-    fs.writeFile(word_list, output_holder, "UTF-8", function(err, data) {
+    fs.writeFile(word_list, words.join('\n'), "UTF-8", function(err, data) {
         if(err) {
             console.log(data);
         }
