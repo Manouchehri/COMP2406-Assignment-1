@@ -15,25 +15,25 @@ var raw_doc_file_split = raw_doc_file.split("\n");
 // Can't get this to work.
 // var word_splitter = new RegExp("/\W//");
 
-var holder = [];
+var words = [];
 
 for(var i = 0; i < raw_doc_file_split.length; i++) {
-    holder = holder.concat(raw_doc_file_split[i].split(" "));
+    words = words.concat(raw_doc_file_split[i].split(" "));
 }
 
-holder.sort();
+words.sort();
 
 // Source: http://stackoverflow.com/a/23238595/2079814
-holder = holder.filter(function(item, index) {
-    return holder.indexOf(item) == index;
+words = words.filter(function(item, index) {
+    return words.indexOf(item) == index;
 })
 
-holder = holder.filter(Boolean); // Strip out empty elements.
+words = words.filter(Boolean); // Strip out empty elements.
 
 var output_holder = "";
 
-for(var i = 0; i < holder.length; i++) {
-    output_holder += holder[i] + "\n";
+for(var i = 0; i < words.length; i++) {
+    output_holder += words[i] + "\n";
 }
 output_holder = output_holder.substr(0, output_holder.length - 1); // Strip away the last newline.
 
