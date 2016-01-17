@@ -17,7 +17,7 @@ var words = raw_doc_file.split(/\W/).sort();
 // Removes duplicates and strip out empty elements.
 words = words.filter(function(item, index) {
     return (item && item.length > 0) && words.indexOf(item) === index;
-})
+});
 
 fs.writeFileSync(word_list, words.join('\n'), "UTF-8");
 

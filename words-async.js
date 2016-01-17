@@ -12,7 +12,7 @@ var word_list = process.argv[3];
 fs.readFile(doc_file, "UTF-8", function(err, data) {
     if(err) {
         throw err;
-    };
+    }
     
     var words = data.split(/\W/).sort();
 
@@ -20,7 +20,7 @@ fs.readFile(doc_file, "UTF-8", function(err, data) {
     // Removes duplicates and strip out empty elements.
     words = words.filter(function(item, index) {
         return (item && item.length > 0) && words.indexOf(item) === index;
-    })
+    });
     
     fs.writeFile(word_list, words.join('\n'), "UTF-8", function(err, data) {
         if(err) {
@@ -28,5 +28,5 @@ fs.readFile(doc_file, "UTF-8", function(err, data) {
         }
         console.log("Finished!");
         process.exit(0);
-    })
+    });
 });
