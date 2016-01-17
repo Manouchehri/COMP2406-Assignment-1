@@ -1,0 +1,3 @@
+This is an example input file, which contains  some odd spaces in places.
+
+Here's another paragraph.
